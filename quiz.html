@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0E3324">
+<meta name="description" content="Weekend Special: The Grand Quiz. 5 unique quizzes and 1 savings challenge from BudgetBuddy.">
+<title>The Grand Quiz | BudgetBuddy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g1:#1D5C41;--g2:#14442F;--g3:#0A2A1D;
+  --gold:#D8B45B;--gold-hi:#F3DC93;--gold-lo:#9C7A2C;--ink:#34270A;
+  --disp:"Cinzel","Trajan Pro",Georgia,serif;
+  --body:"DM Sans","Segoe UI",system-ui,sans-serif;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:#0E3324}
+body{margin:0;min-height:100vh;min-height:100dvh;color:#F4E7BE;font:400 16px/1.5 var(--body);
+  background:radial-gradient(130% 70% at 50% 0%,var(--g1) 0,var(--g2) 40%,var(--g3) 100%)}
+body::before{content:"";position:fixed;inset:0;background:var(--grain);opacity:.55;pointer-events:none}
+.wrap{position:relative;max-width:520px;margin:0 auto;padding:calc(20px + env(safe-area-inset-top,0px)) 18px calc(40px + env(safe-area-inset-bottom,0px))}
+:focus-visible{outline:3px solid var(--gold-hi);outline-offset:3px;border-radius:8px}
+h1,h2,p{margin:0}
+
+/* embossed gold type */
+.gold{font-family:var(--disp);font-weight:800;color:var(--gold);line-height:1.08;text-shadow:0 2px 0 rgba(0,0,0,.35)}
+@supports (-webkit-background-clip:text) or (background-clip:text){
+  .gold{background:linear-gradient(180deg,var(--gold-hi),var(--gold) 50%,var(--gold-lo));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 2px 0 rgba(0,0,0,.4))}
+}
+.hero{text-align:center;margin-bottom:20px}
+.hero .sm{font-size:1.15rem;font-weight:600;margin-bottom:6px}
+.hero h1{font-size:clamp(1.9rem,9vw,2.6rem);text-transform:uppercase;letter-spacing:.01em}
+
+/* sandstone tablet */
+.tablet{position:relative;padding:20px 18px 22px;border-radius:16px;color:var(--ink);
+  background:var(--grain),linear-gradient(160deg,#EBD38C,#D4AE58 45%,#B98F3B);
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.55),inset 0 -4px 0 rgba(0,0,0,.2),0 0 0 3px #8A6B25,0 18px 30px rgba(0,0,0,.5)}
+.tablet h2{font:800 1.3rem/1.2 var(--disp)}
+.center{text-align:center}
+.ribbon{font:800 1.05rem var(--disp);margin:6px 0 14px}
+.meta{font-size:.9rem;color:#5B4713;margin:12px 0 6px}
+.bar{height:14px;border-radius:8px;background:rgba(52,39,10,.35);box-shadow:inset 0 2px 3px rgba(0,0,0,.45);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#14442F,#2E7B56);transition:width .4s}
+.chips{display:flex;gap:10px;justify-content:center;margin:16px 0 8px}
+.chip{padding:8px 16px;border-radius:10px;font:800 1.1rem var(--disp);background:linear-gradient(#CFA64A,#A98234);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -2px 0 rgba(0,0,0,.25)}
+
+/* coins */
+.coin{--s:28px;display:inline-grid;place-items:center;flex:none;width:var(--s);height:var(--s);border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,var(--gold-hi),var(--gold) 55%,var(--gold-lo));color:var(--ink);
+  font:800 calc(var(--s)*.52) var(--disp);box-shadow:inset 0 0 0 2px rgba(255,255,255,.35),inset 0 0 0 4px rgba(120,90,20,.45),0 3px 6px rgba(0,0,0,.45)}
+.coin.dk{background:radial-gradient(circle at 35% 30%,#2F7A56,#14442F 70%);color:var(--gold-hi);box-shadow:inset 0 0 0 2px rgba(243,220,147,.5),0 2px 4px rgba(0,0,0,.4)}
+.pile{display:flex;justify-content:center;align-items:flex-end;margin:26px 0 4px;height:56px}
+.pile .coin{margin:0 -7px;transform:rotate(var(--r,0deg))}
+.tag{display:inline-flex;align-items:center;gap:8px;color:var(--gold-hi);font:800 1.1rem var(--disp)}
+.pop{animation:pop .4s}
+@keyframes pop{40%{transform:scale(1.35)}}
+
+/* buttons */
+.row,.opt,.btn{font:inherit;cursor:pointer;border:0;color:var(--ink);
+  background:linear-gradient(#EFD991,#D8B45B);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -2px 0 rgba(0,0,0,.2),0 3px 0 #8A6B25}
+.row:active,.opt:active,.btn:active{transform:translateY(2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 1px 0 #8A6B25}
+.row{display:flex;align-items:center;gap:12px;width:100%;padding:12px;margin-top:12px;border-radius:12px;text-align:left}
+.row span{flex:1}
+.row b{display:block;font:800 1.02rem var(--disp)}
+.row small{color:#5B4713}
+.row em{font:800 .95rem var(--disp);font-style:normal}
+.opt{display:block;width:100%;padding:14px 16px;margin-top:10px;border-radius:12px;text-align:left;font-weight:500}
+.opt:disabled{cursor:default;opacity:.55}
+.opt.right{opacity:1;color:var(--gold-hi);background:linear-gradient(#2F7A56,#14442F)}
+.opt.wrong{opacity:1;color:#FFE9D6;background:linear-gradient(#A33E2C,#6E2519)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;font-weight:700;margin-top:14px}
+.btn.ghost{background:transparent;color:var(--gold-hi);box-shadow:inset 0 0 0 2px var(--gold);min-height:40px;padding:0 16px;margin:0}
+.fb{margin-top:14px;padding:12px 14px;border-radius:10px;background:rgba(20,68,47,.16)}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.hud{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.note{margin-top:14px;font-size:.92rem;color:#F4E7BE;text-align:center}
+.tablet .note{color:var(--ink)}
+
+/* challenge */
+.chk{display:flex;align-items:center;gap:12px;padding:12px;margin-top:8px;border-radius:12px;background:rgba(52,39,10,.12);cursor:pointer;position:relative}
+.chk input{position:absolute;opacity:0}
+.box{width:26px;height:26px;border-radius:7px;border:3px solid var(--ink);flex:none;display:grid;place-items:center}
+.chk input:checked+.box{background:var(--g2);border-color:var(--g2)}
+.chk input:checked+.box::after{content:"\2713";color:var(--gold-hi);font-weight:800}
+.chk input:focus-visible+.box{outline:3px solid var(--g2);outline-offset:2px}
+.chk b{margin-left:auto;font-family:var(--disp)}
+.big{font-size:3rem;font-weight:800}
+.score{font-size:3.4rem;font-weight:800}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap" id="app"></main>
+
+<script>
+var Q=[
+{t:"Money Basics",d:"Saturday",q:[
+ {q:"In the 50/30/20 rule, what is the 20% for?",o:["Takeout and treats","Savings and paying off debt","Rent and bills"],a:1,w:"Needs get 50%, wants get 30%, and 20% goes to savings and debt."},
+ {q:"How much do most experts suggest keeping in an emergency fund?",o:["One week of spending","3 to 6 months of expenses","Whatever is left over"],a:1,w:"3 to 6 months of essential expenses covers most surprises."},
+ {q:"Which of these is a need, not a want?",o:["Rent","Streaming subscription","Concert tickets"],a:0,w:"Housing is a need. The others are nice to have."}]},
+{t:"Spending Habits",d:"Saturday",q:[
+ {q:"A $5 coffee, 5 days a week, for a year costs about…",o:["$260","$650","$1,300"],a:2,w:"$5 × 5 days × 52 weeks = $1,300."},
+ {q:"What helps most with impulse buys?",o:["Waiting 24 hours","Shopping when stressed","Saving your card details"],a:0,w:"A day’s pause often makes the urge fade."},
+ {q:"How often should you check your budget?",o:["Once a year","Only when you’re broke","A few minutes every week"],a:2,w:"Short, regular check-ins catch problems early."}]},
+{t:"Saving Smart",d:"Saturday",q:[
+ {q:"What does “pay yourself first” mean?",o:["Buy a treat on payday","Move money to savings as soon as you’re paid","Pay your bills last"],a:1,w:"Save first, then spend what’s left."},
+ {q:"Compound interest means you earn interest on…",o:["Only your deposits","Your deposits and past interest","Your bank’s profits"],a:1,w:"Interest on interest is why starting early matters."},
+ {q:"Which savings goal is most likely to work?",o:["“Save more someday”","“Save $600 by March 1”","“Spend less”"],a:1,w:"A clear amount and date turns a wish into a plan."}]},
+{t:"Debt and Credit",d:"Sunday",q:[
+ {q:"To save the most interest, which debt do you usually pay off first?",o:["The smallest balance","The oldest debt","The highest interest rate"],a:2,w:"Paying the highest rate first is called the avalanche method."},
+ {q:"What happens if you only pay the minimum on a credit card?",o:["It takes longer and costs more","The debt disappears faster","Interest stops"],a:0,w:"Minimums mostly cover interest, so the balance shrinks slowly."},
+ {q:"What helps your credit score most?",o:["Paying on time","Closing every account","Checking your balance daily"],a:0,w:"Payment history is a major part of most credit scores."}]},
+{t:"Money Myths",d:"Sunday",q:[
+ {q:"“You need a high income before you can start saving.”",o:["True","False"],a:1,w:"Small, regular amounts add up. Starting matters more than the size."},
+ {q:"“Budgeting means never spending on fun.”",o:["True","False"],a:1,w:"A good budget plans for fun so you don’t overspend by accident."},
+ {q:"“Tracking your spending is the first step to a budget.”",o:["True","False"],a:0,w:"You can’t plan where money goes until you see where it went."}]}
+];
+var C=[["Skip one takeout or coffee",5],["Pack lunch instead of buying",8],["Cancel a subscription you don’t use",10],["Sell or return something unused",15],["Round up your spare change",2],["Wait 24 hours before one purchase",10],["Move money to savings before spending",20]];
+var HANDLE="@budget.buddy.corp";
+
+var app=document.getElementById("app"),S={sc:{},ch:{}},cur=null;
+function coin(s,c,t){return '<span class="coin '+(c||"")+'" style="--s:'+s+'px" aria-hidden="true">'+(t||"$")+'</span>'}
+function total(){var t=0;for(var k in S.sc)t+=S.sc[k];return t}
+function chTotal(){var t=0;for(var k in S.ch)if(S.ch[k])t+=C[k][1];return t}
+function go(h){app.innerHTML=h;window.scrollTo(0,0);var e=app.querySelector("h1,h2");if(e){e.tabIndex=-1;e.focus({preventScroll:true})}}
+var TROPHY='<svg viewBox="0 0 64 64" width="72" height="72" fill="none" stroke="#34270A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M18 8h28v14a14 14 0 0 1-28 0z" fill="#F3DC93"/><path d="M18 14H8c0 10 5 15 12 16M46 14h10c0 10-5 15-12 16"/><path d="M32 36v10M26 46h12v10H26zM22 56h20" fill="#F3DC93"/><path d="m32 13 2.6 5.2 5.7.8-4.1 4 1 5.7-5.2-2.7-5.2 2.7 1-5.7-4.1-4 5.7-.8z" fill="#D8B45B" stroke-width="2"/></svg>';
+
+function home(){
+  var n=Object.keys(S.sc).length,done=n+(chTotal()>0?1:0),rows="";
+  Q.forEach(function(q,i){
+    var d=S.sc[i]!=null;
+    rows+='<button class="row" data-a="q" data-i="'+i+'">'+coin(38,"dk",d?"\u2713":"$")+'<span><b>'+q.t+'</b><small>3 questions, '+q.d+'</small></span><em>'+(d?S.sc[i]+"/3":"Play")+'</em></button>';
+  });
+  var c=chTotal();
+  rows+='<button class="row" data-a="ch">'+coin(38,"dk",c?"\u2713":"$")+'<span><b>Savings Challenge</b><small>7 small saves, Sunday</small></span><em>'+(c?"$"+c:"Start")+'</em></button>';
+  go('<header class="hero"><p class="gold sm">Follow along for the</p><h1 class="gold">Weekend Special: The Grand Quiz!</h1></header>'+
+  '<section class="tablet center">'+TROPHY+'<p class="ribbon">Take the challenge. Win big!</p>'+
+  '<div class="bar" role="img" aria-label="'+done+' of 6 finished"><i style="width:'+(done/6*100)+'%"></i></div>'+
+  '<div class="chips"><span class="chip">SAT 24</span><span class="chip">SUN 25</span></div>'+
+  '<p><b>5 unique quizzes. 1 savings challenge.</b></p><div style="text-align:left">'+rows+'</div>'+
+  (n===5?'<p class="note"><b>Grand Quiz score: '+total()+'/15.</b> Screenshot this and tag '+HANDLE+'</p>':'')+'</section>'+
+  '<div class="pile" aria-hidden="true">'+coin(34,"","$").replace('style="','style="--r:-14deg;')+coin(44).replace('style="','style="--r:6deg;')+coin(30).replace('style="','style="--r:20deg;')+coin(40).replace('style="','style="--r:-8deg;')+'</div>'+
+  '<p class="note"><span class="tag">'+coin(24)+total()+' coins earned</span></p>');
+}
+
+function quiz(){
+  var q=Q[cur.i].q[cur.n];
+  go('<div class="hud"><button class="btn ghost" data-a="home">Home</button><span class="tag">'+coin(26)+'<span id="tot">'+(total()+cur.s)+'</span></span></div>'+
+  '<section class="tablet"><div class="bar"><i style="width:'+(cur.n/3*100)+'%"></i></div>'+
+  '<p class="meta">'+Q[cur.i].t+', question '+(cur.n+1)+' of 3</p><h2>'+q.q+'</h2>'+
+  q.o.map(function(o,k){return '<button class="opt" data-a="ans" data-k="'+k+'">'+o+'</button>'}).join("")+
+  '<div id="fb" aria-live="polite"></div></section>');
+}
+function answer(k){
+  if(cur.done)return;cur.done=true;
+  var q=Q[cur.i].q[cur.n],ok=k===q.a,b=app.querySelectorAll(".opt");
+  if(ok)cur.s++;
+  b.forEach(function(x,j){x.disabled=true;if(j===q.a)x.classList.add("right");else if(j===k)x.classList.add("wrong")});
+  document.getElementById("fb").innerHTML='<div class="fb"><b>'+(ok?"Correct!":"Not quite.")+'</b> '+q.w+'</div><button class="btn" data-a="next">'+(cur.n<2?"Next question":"See score")+'</button>';
+  var t=document.getElementById("tot");t.textContent=total()+cur.s;
+  if(ok){t.classList.remove("pop");void t.offsetWidth;t.classList.add("pop")}
+}
+function result(){
+  var s=cur.s,m=s===3?"Perfect round!":s===2?"Solid work.":"Good start. Try it again for a better score.";
+  var nx=cur.i<4?'<button class="btn" data-a="q" data-i="'+(cur.i+1)+'">Next: '+Q[cur.i+1].t+'</button>':'<button class="btn" data-a="ch">Start the Savings Challenge</button>';
+  go('<section class="tablet center"><p class="meta">'+Q[cur.i].t+'</p><h2>Quiz complete</h2><p class="score">'+s+'/3</p><p>'+m+'</p>'+
+  '<div class="actions" style="justify-content:center">'+nx+'<button class="btn" data-a="home">All quizzes</button></div></section>');
+}
+function challenge(){
+  var r="";
+  C.forEach(function(c,i){r+='<label class="chk"><input type="checkbox" data-c="'+i+'"'+(S.ch[i]?" checked":"")+'><span class="box"></span><span>'+c[0]+'</span><b>$'+c[1]+'</b></label>'});
+  go('<div class="hud"><button class="btn ghost" data-a="home">Home</button><span class="tag">'+coin(26)+total()+'</span></div>'+
+  '<section class="tablet"><h2>Savings Challenge</h2><p class="meta">Tick every save you make this weekend. Amounts are estimates.</p>'+r+
+  '<div class="center" style="margin-top:18px"><p class="meta">You saved</p><p class="big" id="sv">$'+chTotal()+'</p></div>'+
+  '<p class="note">Screenshot your total and tag '+HANDLE+'</p></section>');
+}
+
+app.addEventListener("click",function(e){
+  var b=e.target.closest("[data-a]");if(!b)return;
+  var a=b.dataset.a,i=+b.dataset.i;
+  if(a==="home")home();
+  else if(a==="q"){delete S.sc[i];cur={i:i,n:0,s:0,done:false};quiz()}
+  else if(a==="ans")answer(+b.dataset.k);
+  else if(a==="next"){cur.done=false;if(cur.n<2){cur.n++;quiz()}else{S.sc[cur.i]=cur.s;result()}}
+  else if(a==="ch")challenge();
+});
+app.addEventListener("change",function(e){
+  var c=e.target.dataset.c;if(c==null)return;
+  S.ch[c]=e.target.checked;document.getElementById("sv").textContent="$"+chTotal();
+});
+home();
+</script>
+</body>
+</html>
